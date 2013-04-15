@@ -1,4 +1,4 @@
-package dk.itu.team7.game.world;
+package dk.itu.team7.game;
 
 import java.util.List;
 

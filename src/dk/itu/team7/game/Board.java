@@ -1,23 +1,28 @@
-package Gorilla;
+package dk.itu.team7.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
 public class Board extends JPanel implements KeyListener{
+	/** This class calls on the player class and assign values to the player parameters.
+	 * it also initialize the keylistner which takes input from the keyboard
+	 */
 	
+	private static final long serialVersionUID = 1L;
 	Player player1;
 	Player player2;
-
+    Banana banana;
 
     public Board() {
+    	// makes 2 new player objects, and assign values to the player parameters
     	
-    	player1 = new Player(50, 300, 40, 40, Color.blue);
-    	player2 = new Player(750, 300, 40, 40, Color.red);
-  
+    	player1 = new Player(50, 250, 40, 40, Color.blue); //(int x, int y, int w, int h, Color c)
+    	player2 = new Player(710, 250, 40, 40, Color.red);
+     //   banana = new Banana;
+        
 		addKeyListener(this);
     }
 		
@@ -27,7 +32,8 @@ public class Board extends JPanel implements KeyListener{
 
     	    @Override
     	    public void keyPressed(KeyEvent e) {
-    	        
+    	//this method calls on the method moveDown(in class player) to get the movement-range
+    	    	
     	        int keyCode = e.getKeyCode();
     	         
     	         if (keyCode == KeyEvent.VK_S) {
@@ -56,46 +62,22 @@ public class Board extends JPanel implements KeyListener{
     	    
     	    public boolean isFocusTraversable() {
     	        return true;
+    	   // what does this do?      
+    	        
     	    }
-
+    	    
+    	    public void paint(Graphics g) {
+    	    // This method lets us paint the new objects of the players. it calls on the method Graphics g in players.
+    	    	
+    	    	player1.display(g);
+    	    	
+    	    	player2.display(g);
+    	    }
+    	    
+}
     		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		//      ImageIcon ii = new ImageIcon(this.getClass().getResource("bardejov.png"));
-//        bardejov = ii.getImage();
-    	
-//    	int square.height = 
-  //  	int square.width = 
-    }
-
+/*
     //@Override
     public void paint(Graphics g) {
 
@@ -120,3 +102,5 @@ public class Board extends JPanel implements KeyListener{
         g.fillRect(300, 300, 100, 100);
     }
 }	
+    	    
+    	    */

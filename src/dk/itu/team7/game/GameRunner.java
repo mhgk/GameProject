@@ -1,8 +1,8 @@
-package dk.itu.team7.game.world;
+package dk.itu.team7.game;
 
 import java.util.List;
 
-import dk.itu.team7.game.world.Location.Direction;
+import dk.itu.team7.game.Location.Direction;
 
 public class GameRunner {
 	

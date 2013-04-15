@@ -1,4 +1,4 @@
-package Gorilla;
+package dk.itu.team7.game;
 
 
 import javax.swing.*;
@@ -8,9 +8,16 @@ public class View extends JFrame {
 	/**
 	 * 
 	 */
-	public View() {
+	private static final long serialVersionUID = 1L;
 
-		add(new Board());
+	/**
+	 * 
+	 */
+	public void setupView () {
+		 
+		Board board = new Board();
+		
+		add(board);
 		setSize(800, 600);
 		setTitle("Gorilla");
 		setVisible(true); // make the frame visible
@@ -18,7 +25,15 @@ public class View extends JFrame {
 		setResizable(false); // turn off resizing
 		setLocationRelativeTo(null); // center the windows
 	}
-	public static void main(String[] args) {
-		new View();	
+	
+	public View() {
+		// TODO Auto-generated constructor stub
 	}
+/*
+	public void runMe() {
+	 
+     View vW = new View();	
+	public s(String[] args) {
+		new View();	
+	}*/
 }

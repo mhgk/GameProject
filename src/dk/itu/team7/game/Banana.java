@@ -1,4 +1,4 @@
-package Gorilla;
+package dk.itu.team7.game;
 
 public class Banana {
 	private final int BANANA_WIDTH = 20;
@@ -13,7 +13,7 @@ public class Banana {
 	}
 	
 	public void draw() {
-		// tegn banan		
+		// 	
 	}
 
 }
