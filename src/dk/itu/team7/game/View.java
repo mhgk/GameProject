@@ -18,7 +18,7 @@ public class View extends JFrame {
 		Board board = new Board();
 		
 		add(board);
-		setSize(800, 600);
+		setSize(1366, 768);
 		setTitle("Gorilla");
 		setVisible(true); // make the frame visible
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // set default exit action
@@ -29,11 +29,5 @@ public class View extends JFrame {
 	public View() {
 		// TODO Auto-generated constructor stub
 	}
-/*
-	public void runMe() {
-	 
-     View vW = new View();	
-	public s(String[] args) {
-		new View();	
-	}*/
+
 }

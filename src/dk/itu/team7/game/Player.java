@@ -27,16 +27,16 @@ public class Player {
 		this.color = c;
 	}
 
-	 public void display(Graphics g){
-// This method lets us draw the players
-		 
-	        // This is player rendered graphics.
-	        Graphics2D graphics = (Graphics2D) g;    // Graphical library to render shapes.
-	        graphics.setColor(color);
-	        graphics.drawRect(x, y, width, height); // draws a rectangle circumces
-	        graphics.fillRect(x, y, width, height); // this fills the rectangle with colour
-	        //graphics.
-	    }
+	public void display(Graphics g){
+		// This method lets us draw the players
+				 
+			        // This is player rendered graphics.
+			        Graphics2D graphics = (Graphics2D) g;    // Graphical library to render shapes.
+			        graphics.setColor(color);
+			        graphics.drawRect(x, y, width, height); // draws a rectangle circumces
+			        graphics.fillRect(x, y, width, height); // this fills the rectangle with colour
+			        //graphics.
+			    }
 
 	    public void moveDown(){
 // this method indicates a movement-range when a key is pressed
@@ -52,10 +52,15 @@ public class Player {
 	         y = y - 20;
 	    }
 
+ public int getY() {
+	 
+	 return y;
+ }
 
-
-		
+ public int getX() {
+	
+	 return x;
 	
 	}
 
-
+}
