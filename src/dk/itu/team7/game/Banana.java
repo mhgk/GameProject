@@ -11,6 +11,8 @@ public class Banana {
 	private int width;
 	private int height;
 	private Color color;
+	private double inner_x;
+	private double inner_y;
 
 	
 
@@ -32,7 +34,8 @@ public class Banana {
 	public void updateBanana(int x, int y) {
 		this.x = x;
 		this.y = y;
-
+		inner_x = x;
+		inner_y = y;
 	}
 
 	public void display(Graphics g) {
@@ -54,32 +57,50 @@ public class Banana {
 
 	}
 
-	private double x_speed =  1;
-	private double y_speed = -2;
-    private double velocity = 0.001;
+	private double inputAngle = 65;
+	private double degreeToRadian = (inputAngle/360)*(2 * Math.PI);
+//	private double x_speed = 2 * (((((input - 45)*1.11111))/100)+1);
+//    private double y_speed = -2 * (((((45 - input)*1.11111))/100)+1);		
+	private double x_speed = 1 * Math.cos(degreeToRadian);
+	private double y_speed =  -1 *  Math.sin(degreeToRadian);
+    private double g = 0.004;
 	
     public void projectory() {
 		
 
-   
-		x += x_speed;
+ 
+		inner_x += x_speed;
 		
-		y += y_speed;
+		inner_y += y_speed;
 		
-		y_speed += velocity;
+		y_speed += g;
 
-		System.out.println(x + " , " + y);
+	//	System.out.println(x + " , " + y); 
 		
-		if (x < 0 || x > 1400) {
-			x = 0;
+		x = (int) Math.round(inner_x);
+		y = (int) Math.round(inner_y);
+		
+		
+		
+		if (x < 0 || x > 1400 && y > 800) {
+			
+			
 			this.visible = false;
 			
+			
 		}
-		
-		
-        if (y > 800) {
-            y = 0;        
-        	this.visible = false;
-        }
+	
+        
 	}
+    
+    public int getY() {
+   	 
+   	 return y;
+    }
+
+    public int getX() {
+   	
+   	 return x;
+   	
+   	}
 }

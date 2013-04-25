@@ -30,7 +30,7 @@ public class Board extends JPanel implements KeyListener {
 				Color.blue); // (int x, int y, int w, int h, Color c)
 		player2 = new Player(790 - randomX(), 450 - randomY(), 20, 40,
 				Color.red);
-		banana1 = new Banana(player1.getX(), player1.getY(), 20, 20,
+		banana1 = new Banana(player1.getX(), player1.getY(), 15, 15,
 				Color.YELLOW);
 		// banana = new Banana(x, y, w, h, Color.YELLOW);
 
@@ -86,17 +86,23 @@ public class Board extends JPanel implements KeyListener {
 
 		player2.display(g);
 		banana1.display(g);
+		
 
 		if (isBanana) {
 
 			banana1.visible = true;
 			
             banana1.updateBanana(player1.getX(), player1.getY());
-		
 
 			isBanana = false;
 
 		}
+		banana1.getX();
+		banana1.getY();
+		
+		
+	// collision control	if ( )
+		
 
 	}
 
