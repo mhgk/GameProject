@@ -1,4 +1,5 @@
 package dk.itu.team7.game;
+//model view controller
 
 public class GameController {
 	// this is the main class of the game.

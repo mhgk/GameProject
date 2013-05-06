@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Random;
-//import java.util.Scanner;
 
 import javax.swing.JPanel;
 
@@ -20,19 +18,27 @@ public class Board extends JPanel implements KeyListener {
 	Player player1;
 	Player player2;
 	Banana banana1;
+	SkylineMap skyline;
+	DrawObjects drawobject;
+	Trajectory trajectory;
 	boolean isBanana = false;
 
 	public Board() {
 		// makes 2 new player objects, and assign values to the player
 		// parameters
+		skyline = new SkylineMap(0, 0, 0, 0, Color.black);
 
-		player1 = new Player(randomX() + 10, 450 - randomY(), 20, 40,
-				Color.blue); // (int x, int y, int w, int h, Color c)
-		player2 = new Player(790 - randomX(), 450 - randomY(), 20, 40,
+		skyline.createSkyline();
+
+		player1 = new Player(skyline.houseWidth / 2,
+				skyline.blockNew[0][1] - 40, 20, 40, Color.blue); // (int x, int
+																	// y, int w,
+																	// int h,
+																	// Color c)
+		player2 = new Player(1366 - skyline.houseWidth / 2 - 20,
+				skyline.blockNew[skyline.numberOfhouses - 1][1] - 40, 20, 40,
 				Color.red);
-		banana1 = new Banana(player1.getX(), player1.getY(), 15, 15,
-				Color.YELLOW);
-		// banana = new Banana(x, y, w, h, Color.YELLOW);
+		banana1 = new Banana(50, -400, 15, 15, Color.YELLOW);
 
 		addKeyListener(this);
 	}
@@ -59,6 +65,7 @@ public class Board extends JPanel implements KeyListener {
 
 		if (keyCode == KeyEvent.VK_SPACE) {
 
+			// trajectory.updateBanana(x, y);
 			isBanana = true;
 		}
 
@@ -83,45 +90,21 @@ public class Board extends JPanel implements KeyListener {
 		// the method Graphics g in players.
 		// return nothing
 		player1.display(g);
-
 		player2.display(g);
-		banana1.display(g);
-		
+
+		skyline.display(g);
 
 		if (isBanana) {
 
 			banana1.visible = true;
-			
-            banana1.updateBanana(player1.getX(), player1.getY());
-
+			banana1.updateBanana(player1.getX(), player1.getY());
 			isBanana = false;
 
 		}
-		banana1.getX();
-		banana1.getY();
-		
-		
-	// collision control	if ( )
-		
 
+		banana1.display(g);
+
+		banana1.runme();
 	}
 
-	public int randomX() {
-
-		Random randomStartPosX = new Random();
-
-		int x = randomStartPosX.nextInt(190);
-
-		return x;
-
-	}
-
-	public int randomY() {
-
-		Random randomStartPosY = new Random();
-
-		int y = randomStartPosY.nextInt(190);
-
-		return y;
-	}
 }

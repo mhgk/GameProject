@@ -16,7 +16,7 @@ public class View extends JFrame {
 	public void setupView () {
 		 
 		Board board = new Board();
-		
+		System.out.println("start");
 		add(board);
 		setSize(1366, 768);
 		setTitle("Gorilla");
