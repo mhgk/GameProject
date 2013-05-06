@@ -3,8 +3,8 @@ package dk.itu.team7.game;
 public class Trajectory {
 
 	private static double windFactor = -30;
-	private static double velocity = 50;
-	private static double inputAngle = 65;
+	private static double velocity = 30;
+	private static double inputAngle = 20;
 	private static double degreeToRadian = (inputAngle / 360) * (2 * Math.PI);
 	// private double y_speed = -2 * (((((45 - input)*1.11111))/100)+1);
 	private static double x_speed = ((1 + velocity * 0.02) + (windFactor * 0.01))
@@ -31,18 +31,18 @@ public class Trajectory {
 
 		y_speed += g;
 
+		// CollisionControl.collisionControl( inner_x, inner_y);
+
 		setX(inner_x);
 
 		setY(inner_y);
 
-		// CollisionControl.collisionControl(double x, double y);
+	//	if (x < 0 || x > 1400 || y < -800) {
 
-		if (x < 0 || x > 1400 || y < -800) {
-
-			y_speed = -(1 + velocity * 0.02) * Math.sin(degreeToRadian);
+		//	y_speed = -(1 + velocity * 0.02) * Math.sin(degreeToRadian);
 
 			// this.visible = false;
-		}
+		//}
 	}
 
 	public static double getY() {

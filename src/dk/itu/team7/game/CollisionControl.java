@@ -2,39 +2,58 @@ package dk.itu.team7.game;
 
 public class CollisionControl {
 
-	static int[][] map;
-	public int hitOrNot;
-	
-/*
-	public static void collisionControl(double x, double y) {
+	int[][] map;
+	// public int hitOrNot;
+	int houseWidth;
+	int houseHight;
+	int player1x;
+	int player1y;
+	int player2x;
+	int player2y;
 
-		map = SkylineMap.blockNew;
-        int houseWidth = SkylineMap.houseWidth;
-        		
+	public void getParameters(int[][] map, int houseWidth, int houseHight, int player1x, int player1y, int player2x, int player2y) {
+
+		this.map = map;
+		this.houseWidth = houseWidth;
+		this.houseHight = houseHight;
+		this.player1x = player1x;
+		this.player1y = player1y;
+		this.player2x = player2x;
+		this.player2y = player2y;
+	}
+
+	public int collisionControl(int x, int y) {
+
+		
 		int bananaY = y;
 
 		int bananaX = x;
 
 		for (int i = 0; i < map.length; i++) {
-			
-			int temp = houseWidth * i;
-            int temp1 = houseWidth * (i+1);
-			
-			while (bananaX > temp || bananaX < temp1) {
-				
-			if (bananaY < map[i][1]) {
-				
-			}
 
-				
+			int houseStartX = houseWidth * i;
+			int houseEndX = houseWidth * (i + 1);
+			int houseY = map[i][1];
+			
+
+		 if (bananaX > houseStartX && bananaX < houseEndX) {
+
+				if (bananaY > houseY) {
+					
+					return 1;
+
+				}
 
 			}
 
 		}
-	
 		
-		// return true;
-
+		if (  bananaX > player1x && bananaX < player1y+20 || bananaX < player2x && bananaX > player2x +20)
+                
+			if (bananaY > player1y || bananaY > player2y) {
+		 return 2;
+			}
+	return 0;
 	}
 
-*/ }
+}

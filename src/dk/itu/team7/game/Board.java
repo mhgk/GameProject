@@ -20,25 +20,33 @@ public class Board extends JPanel implements KeyListener {
 	Banana banana1;
 	SkylineMap skyline;
 	DrawObjects drawobject;
-	Trajectory trajectory;
+//	Trajectory trajectory;
+	CollisionControl c;
 	boolean isBanana = false;
-
-	public Board() {
+	boolean playerHit = true;
+	private int collisionResult = -1;
+	public Board() {}
 		// makes 2 new player objects, and assign values to the player
 		// parameters
-		skyline = new SkylineMap(0, 0, 0, 0, Color.black);
+		
+		public void setupBoard() {
+		skyline = new SkylineMap();
 
-		skyline.createSkyline();
+		c = new CollisionControl();
+		
+		
+	    skyline.createSkyline();
 
 		player1 = new Player(skyline.houseWidth / 2,
-				skyline.blockNew[0][1] - 40, 20, 40, Color.blue); // (int x, int
-																	// y, int w,
-																	// int h,
-																	// Color c)
+				skyline.blockNew[0][1] - 40, 20, 40, Color.blue); 
 		player2 = new Player(1366 - skyline.houseWidth / 2 - 20,
 				skyline.blockNew[skyline.numberOfhouses - 1][1] - 40, 20, 40,
 				Color.red);
 		banana1 = new Banana(50, -400, 15, 15, Color.YELLOW);
+		
+		 c.getParameters(skyline.blockNew, skyline.houseWidth, skyline.houseHight,player1.getX(), player1.getY(),player2.getX(), player2.getY());
+		
+		
 
 		addKeyListener(this);
 	}
@@ -53,15 +61,6 @@ public class Board extends JPanel implements KeyListener {
 		// movement-range
 
 		int keyCode = e.getKeyCode();
-
-		/*
-		 * if (keyCode == KeyEvent.VK_S) { player1.moveDown(); }
-		 * 
-		 * if (keyCode == KeyEvent.VK_W) { player1.moveUp(); } if (keyCode ==
-		 * KeyEvent.VK_DOWN) { player2.moveDown(); }
-		 * 
-		 * if (keyCode == KeyEvent.VK_UP) { player2.moveUp(); }
-		 */
 
 		if (keyCode == KeyEvent.VK_SPACE) {
 
@@ -101,10 +100,28 @@ public class Board extends JPanel implements KeyListener {
 			isBanana = false;
 
 		}
-
+      
 		banana1.display(g);
 
 		banana1.runme();
-	}
-
+		
+		
+		
+		 collisionResult =  c.collisionControl(banana1.getX(), banana1.getY());
+				
+		 if (collisionResult == 1) {
+			 // change player
+			 
+		 }
+		 
+		 if (collisionResult == 2){
+			
+			setupBoard();
+			banana1.visible = false;
+			playerHit = true;
+		}
+       
+		
+	} 
+	
 }

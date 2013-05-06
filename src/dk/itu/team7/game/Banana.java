@@ -23,7 +23,6 @@ public class Banana extends DrawObjects {
 			doubleY = Trajectory.getY();
 
 			y = (int) Math.round(doubleY);
-
 			x = (int) Math.round(doubleX);
 		}
 	}
@@ -36,5 +35,22 @@ public class Banana extends DrawObjects {
 		  this.doubleY = y;
 		 
 	}
+	
+	public  int getY() {
 
+		return y;
+	}
+	
+	public int getX() {
+
+		return x;
+	}
+	
+	public void setX(int value) {
+		x = value;
+		} 
+
+	public void setY(int value) {
+	   y = value;
+	} 
 }

@@ -16,6 +16,7 @@ public class View extends JFrame {
 	public void setupView () {
 		 
 		Board board = new Board();
+		board.setupBoard();
 		System.out.println("start");
 		add(board);
 		setSize(1366, 768);
@@ -29,5 +30,6 @@ public class View extends JFrame {
 	public View() {
 		// TODO Auto-generated constructor stub
 	}
+	
 
 }

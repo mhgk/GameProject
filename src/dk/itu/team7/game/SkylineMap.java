@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-public class SkylineMap extends DrawObjects {
+public class SkylineMap  {
 	public int numberOfhouses;
 	public int houseWidth;
 	int houseHight = 800;
@@ -13,12 +13,14 @@ public class SkylineMap extends DrawObjects {
 	int w;
 	int h;
 	int[][] temp = new int[10][10];
-
-	public SkylineMap(int x, int y, int w, int h, Color c) {
+    
+	
+	
+/*	public SkylineMap(int x, int y, int w, int h, Color c) {
 
 		super(x, y, w, h, c);
 
-	}
+	} */
 
 	public int[][] createSkyline() {
 
