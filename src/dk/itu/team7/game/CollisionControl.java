@@ -3,7 +3,6 @@ package dk.itu.team7.game;
 public class CollisionControl {
 
 	int[][] map;
-	// public int hitOrNot;
 	int houseWidth;
 	int houseHight;
 	int player1x;
@@ -46,23 +45,24 @@ public class CollisionControl {
 			}
 
 		}
-		if (x < 0 || x > 1400 || y < -800) {
+		if (x < 0 || x > 1400) {
 
 			return 3;
 		}
 
-		if (bananaX > player1x && bananaX < player1y + 20 || bananaX < player2x
-				&& bananaX > player2x + 20)
+		if (bananaX > player1x && bananaX < player1x + 20 || bananaX > player2x
+				&& bananaX < player2x + 20) {
 
 			if (bananaY > player1y) {
 				Board.counterP1++;
 				return 2;
 			}
-		
-		if (bananaY > player2y) {
-            Board.counterP2++;
-			return 2;
 
+			if (bananaY > player2y) {
+				Board.counterP2++;
+				return 2;
+
+			}
 		}
 		return 0;
 	}

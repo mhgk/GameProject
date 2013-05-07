@@ -1,8 +1,9 @@
 package dk.itu.team7.game;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.Area;
 
 public class SkylineMap  {
 	public int numberOfhouses;
@@ -14,14 +15,6 @@ public class SkylineMap  {
 	int h;
 	int[][] temp = new int[10][10];
     
-	
-	
-/*	public SkylineMap(int x, int y, int w, int h, Color c) {
-
-		super(x, y, w, h, c);
-
-	} */
-
 	public int[][] createSkyline() {
 
 		blockNew = Randomizer.randomizer();
@@ -34,21 +27,23 @@ public class SkylineMap  {
 
 		return blockNew;
 	}
-
-
 	
-	  public void display(Graphics g) {
-	  
-	  for (int i = 0; i < numberOfhouses; i++) {
-	  
-	  Graphics2D graphics = (Graphics2D) g; // Graphical library to render //
-	  graphics.setColor(c);
-	  
-	  graphics.drawRect(i * houseWidth, blockNew[i][1], houseWidth, 800); //
-	  
-	  graphics.fillRect(i * houseWidth, blockNew[i][1], houseWidth, 800); //
-	  
-	  } }
-	 
+	public Shape getShape() {
+		Area area = null;
+		  for (int i = 0; i < numberOfhouses; i++) {
+			  Shape house = new Rectangle(i * houseWidth, blockNew[i][1], houseWidth, 800);
+			  if (area == null) {
+				  area = new Area(house);
+			  } else {
+				  area.add(new Area(house));
+			  }
+		  }
+		return area;
+	}
+	
+	public Color getColor() {
+		return c;
+	}
+ 
 
 }

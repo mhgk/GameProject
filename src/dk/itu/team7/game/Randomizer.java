@@ -38,7 +38,7 @@ public class Randomizer {
 
 		Random randomYHouse = new Random();
 
-		int y = 150 + randomYHouse.nextInt(400);
+		int y = 300 + randomYHouse.nextInt(400);
 
 		return y;
 	}

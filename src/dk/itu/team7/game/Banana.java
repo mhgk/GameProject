@@ -1,17 +1,27 @@
 package dk.itu.team7.game;
 
 import java.awt.Color;
+import java.awt.Rectangle;
+import java.awt.Shape;
 
-public class Banana extends DrawObjects {
+public class Banana {
 
 	private double doubleX;
 	private double doubleY;
 	public boolean visible = false;
+	
+	private int x;
+	private int y;
+	private int w;
+	private int h;
+	private Color color;
 
-	Banana(int x, int y, int w, int h, Color c) {
-
-		super(x, y, w, h, c);
-
+	public Banana(int x, int y, int w, int h, Color color) {
+		this.x = x;
+		this.y = y;
+		this.h = h;
+		this.w = w;
+		this.color = color;
 	}
 
 	public void runme() {
@@ -45,6 +55,16 @@ public class Banana extends DrawObjects {
 
 		return x;
 	}
+	
+	
+	public Shape getShape() {
+		return new Rectangle(x, y, w, h);
+	}
+	
+	public Color getColor() {
+		return color;
+	}
+	
 	/*
 	public void setX(int value) {
 		x = value;

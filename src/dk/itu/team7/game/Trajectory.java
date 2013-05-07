@@ -3,8 +3,8 @@ package dk.itu.team7.game;
 public class Trajectory {
 
 	private static double windFactor = -30;
-	public static double velocity = 100;
-	public static double inputAngle = 60;
+	public static double velocity;
+	public static double inputAngle;
 	private static double degreeToRadian;
 	private static double x_speed; // = ((1 + velocity * 0.02) + (windFactor * 0.01))
 	//		* Math.cos(degreeToRadian);

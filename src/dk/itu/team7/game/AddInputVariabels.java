@@ -35,8 +35,8 @@ public class AddInputVariabels extends JTextField {
 			public void actionPerformed(ActionEvent e) {
 				String inputAngle = angleText.getText();
 				System.out.println(inputAngle);
-				angleLabel.setVisible(false);
-				angleText.setVisible(false);
+				//angleLabel.setVisible(false);
+				//angleText.setVisible(false);
 				inputVelocityField();
 				Double x = Double.parseDouble(inputAngle);
 				Trajectory.inputAngle = x;

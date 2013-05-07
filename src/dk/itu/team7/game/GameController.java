@@ -1,15 +1,12 @@
 package dk.itu.team7.game;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-//model view controller
-
 public class GameController {
 	// this is the main class of the game.
 
 	// private static Board board;
 	private static View view;
+
+	String winner;
 
 	public GameController() throws InterruptedException {
 		// this constructor(GameController) calls on the method startGame and
@@ -27,19 +24,24 @@ public class GameController {
 
 		Board board = new Board();
 		board.setupBoard();
-		view = new View();
-		view.add(board);
-		view.setupView();
+		view = new View(board);
+
 	}
 
 	public void runGame() throws InterruptedException {
 		// This method calls on view and and uses the function repaint on it.
 		// The Tread.sleep is the refresh-time
 
-		while (true) {
+		while (!isThereAWinner()) {
 			view.repaint();
 			Thread.sleep(10);
+			view.showScore();
+			
+			
 		}
+		// message dialog - print winner
+System.out.println("Congrats!");
+view.showScore();
 	}
 
 	public static void main(String[] args) throws InterruptedException {
@@ -50,5 +52,17 @@ public class GameController {
 		@SuppressWarnings("unused")
 		GameController controller = new GameController();
 
+	}
+
+	public boolean isThereAWinner() {
+		if (Board.getCounterP1() == 5) {
+			winner = "Player 1";
+			return true;
+		}
+		if (Board.getCounterP2() == 5) {
+			winner = "Player 2";
+			return true;
+		}
+		return false;
 	}
 }
