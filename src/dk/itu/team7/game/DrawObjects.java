@@ -22,7 +22,7 @@ public class DrawObjects {
 		this.c = c;
 	}
 
-	public void display(Graphics g) {
+	public void draw(Graphics g) {
 		// This method lets us draw the objects
 		// (this.visible == true) {
 		// This is player rendered graphics.

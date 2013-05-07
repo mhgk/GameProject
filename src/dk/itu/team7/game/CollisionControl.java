@@ -11,7 +11,8 @@ public class CollisionControl {
 	int player2x;
 	int player2y;
 
-	public void getParameters(int[][] map, int houseWidth, int houseHight, int player1x, int player1y, int player2x, int player2y) {
+	public void getParameters(int[][] map, int houseWidth, int houseHight,
+			int player1x, int player1y, int player2x, int player2y) {
 
 		this.map = map;
 		this.houseWidth = houseWidth;
@@ -24,7 +25,6 @@ public class CollisionControl {
 
 	public int collisionControl(int x, int y) {
 
-		
 		int bananaY = y;
 
 		int bananaX = x;
@@ -33,27 +33,38 @@ public class CollisionControl {
 
 			int houseStartX = houseWidth * i;
 			int houseEndX = houseWidth * (i + 1);
-			int houseY = map[i][1];
-			
+			int houseY = map[i][1] - 15;
 
-		 if (bananaX > houseStartX && bananaX < houseEndX) {
+			if (bananaX > houseStartX && bananaX < houseEndX) {
 
 				if (bananaY > houseY) {
-					
-					return 1;
+
+					return 3;
 
 				}
 
 			}
 
 		}
-		
-		if (  bananaX > player1x && bananaX < player1y+20 || bananaX < player2x && bananaX > player2x +20)
-                
-			if (bananaY > player1y || bananaY > player2y) {
-		 return 2;
+		if (x < 0 || x > 1400 || y < -800) {
+
+			return 3;
+		}
+
+		if (bananaX > player1x && bananaX < player1y + 20 || bananaX < player2x
+				&& bananaX > player2x + 20)
+
+			if (bananaY > player1y) {
+				Board.counterP1++;
+				return 2;
 			}
-	return 0;
+		
+		if (bananaY > player2y) {
+            Board.counterP2++;
+			return 2;
+
+		}
+		return 0;
 	}
 
 }

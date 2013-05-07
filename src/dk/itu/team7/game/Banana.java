@@ -45,12 +45,12 @@ public class Banana extends DrawObjects {
 
 		return x;
 	}
-	
+	/*
 	public void setX(int value) {
 		x = value;
 		} 
 
 	public void setY(int value) {
 	   y = value;
-	} 
+	} */
 }

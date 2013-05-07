@@ -3,45 +3,21 @@ package dk.itu.team7.game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
-public class View extends JFrame {
-
-	/**
-         *
-         */
+public class AddInputVariabels extends JTextField {
+	
+	 
 	private static final long serialVersionUID = 1L;
-
-	/**
-         *
-         */
-
 	final JLabel angleLabel = new JLabel("Enter angle:");
 	final JTextField angleText = new JTextField();
 
-	final static JLabel velocityLabel = new JLabel("Enter velocity:");
-	final static JTextField velocityText = new JTextField();
+	final JLabel velocityLabel = new JLabel("Enter velocity:");
+	final JTextField velocityText = new JTextField();
 
-	public void setupView() {
-
-		//Board board = new Board();
-		//board.setupBoard();
-
-		//add(board);
-		
-
-		setSize(1366, 768);
-		setTitle("Gorilla");
-		setVisible(true); // make the frame visible
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // set default exit
-														// action
-		setResizable(false); // turn off resizing
-		setLocationRelativeTo(null); // center the windows
-
-		// inputAngleField();
-
-	}
-/*
 	public void inputAngleField() {
 
 		add(angleLabel);
@@ -93,8 +69,5 @@ public class View extends JFrame {
 				Trajectory.calculateDegree();
 			}
 		});
-	}   */
-
-	public View() {
 	}
 }
