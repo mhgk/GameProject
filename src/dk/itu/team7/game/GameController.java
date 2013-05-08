@@ -1,12 +1,15 @@
 package dk.itu.team7.game;
 
+import javax.swing.JOptionPane;
+
 public class GameController {
 	// this is the main class of the game.
 
 	// private static Board board;
 	private static View view;
-
+	private static Board board;
 	String winner;
+	JOptionPane jop = new JOptionPane();
 
 	public GameController() throws InterruptedException {
 		// this constructor(GameController) calls on the method startGame and
@@ -22,7 +25,7 @@ public class GameController {
 		// this method makes a new object of the class View, and runs the method
 		// in it - setupView
 
-		Board board = new Board();
+		board = new Board();
 		board.setupBoard();
 		view = new View(board);
 
@@ -36,12 +39,24 @@ public class GameController {
 			view.repaint();
 			Thread.sleep(10);
 			view.showScore();
-			
-			
+
 		}
-		// message dialog - print winner
-System.out.println("Congrats!");
-view.showScore();
+
+		view.showScore();
+
+		int answer = JOptionPane.showConfirmDialog(null, "Play again?", winner
+				+ "win the game :D", JOptionPane.YES_NO_OPTION);
+		System.out.println(answer);
+		
+		if (answer == 0) {
+			Board.counterP1 = 0;
+			Board.counterP2 = 0;
+			runGame();
+		}
+		
+		if (answer == 1) {
+			System.exit(0);
+		}
 	}
 
 	public static void main(String[] args) throws InterruptedException {
@@ -52,6 +67,12 @@ view.showScore();
 		@SuppressWarnings("unused")
 		GameController controller = new GameController();
 
+	}
+
+	public void newShootInput() {
+		if (Board.collisionResult == 3) {
+			view.inputAngleField();
+		}
 	}
 
 	public boolean isThereAWinner() {

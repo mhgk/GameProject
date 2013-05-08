@@ -45,25 +45,26 @@ public class CollisionControl {
 			}
 
 		}
+	
 		if (x < 0 || x > 1400) {
 
 			return 3;
 		}
 
-		if (bananaX > player1x && bananaX < player1x + 20 || bananaX > player2x
-				&& bananaX < player2x + 20) {
+		if (bananaX >= player1x && bananaX <= player1x + 20) {
 
 			if (bananaY > player1y) {
-				Board.counterP1++;
-				return 2;
-			}
-
-			if (bananaY > player2y) {
 				Board.counterP2++;
 				return 2;
-
 			}
 		}
+			if (bananaX >= player2x && bananaX <= player2x + 20) {
+
+				if (bananaY > player2y) {
+					Board.counterP1++;
+					return 2;
+				}
+			}
 		return 0;
 	}
 

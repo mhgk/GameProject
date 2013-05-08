@@ -2,7 +2,7 @@ package dk.itu.team7.game;
 
 public class Trajectory {
 
-	private static double windFactor = -30;
+	public static double windFactor;
 	public static double velocity;
 	public static double inputAngle;
 	private static double degreeToRadian;
@@ -20,10 +20,10 @@ public class Trajectory {
 	private static double x;
 	private static double y;
 
-	public static void calculateDegree() {
+	public static void calculateDegree(int t) {
 		degreeToRadian = (inputAngle / 360) * (2 * Math.PI);
 	
-		x_speed = ((1 + velocity * 0.02) + (windFactor * 0.01))
+		x_speed = t * ((1 + velocity * 0.02) + (windFactor * 0.1))
 				* Math.cos(degreeToRadian);
 		y_speed = -(1 + velocity * 0.02) * Math.sin(degreeToRadian);
 		
@@ -73,7 +73,12 @@ public class Trajectory {
 
 		inputAngle = value;
 
-		System.out.println("?????? inputAngle" + inputAngle + " " + value);
+	}
+	
+	public static void setwindFactor(double value) {
+
+		windFactor = value;
+System.out.println(windFactor + "WF");
 	}
 
 }

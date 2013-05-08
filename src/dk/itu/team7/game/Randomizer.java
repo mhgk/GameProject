@@ -3,27 +3,27 @@ package dk.itu.team7.game;
 import java.util.Random;
 
 public class Randomizer {
-	
-	
+
 	public static int[][] randomizer() {
-	
-	int numberOfhouses = randomNumberOfHouses();
-	
-	int[][] block = new int[numberOfhouses][2];
-	
-	for (int i= 0; i < numberOfhouses; i++) {
+
+		int numberOfhouses = randomNumberOfHouses();
+
+		int[][] block = new int[numberOfhouses][2];
+
+		for (int i = 0; i < numberOfhouses; i++) {
+
+			int houseHeight = randomYHouse();
+			block[i][0] = numberOfhouses;
+			block[i][1] = houseHeight;
+
+		}
+
+		windFactor();
 		
-		int houseHeight = randomYHouse();
-		block [i][0] = numberOfhouses;
-		block[i][1]= houseHeight; 
-		
+		return block;
+
 	}
-	
-	
-	return block;
-	
-	}
-	
+
 	public static int randomNumberOfHouses() {
 
 		Random randomXHouse = new Random();
@@ -43,5 +43,13 @@ public class Randomizer {
 		return y;
 	}
 
+	public static void windFactor() {
+
+		Random windFactor = new Random();
+
+		double wF = windFactor.nextInt(21) - 11;
+
+		Trajectory.setwindFactor(wF);
+	}
 
 }

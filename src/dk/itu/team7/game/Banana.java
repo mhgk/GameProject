@@ -27,6 +27,7 @@ public class Banana {
 	public void runme() {
 
 		if (visible) {
+			
 			Trajectory.projectory(doubleX, doubleY);
 
 			doubleX = Trajectory.getX();
@@ -38,9 +39,7 @@ public class Banana {
 	}
 
 	public void updateBanana(int x, int y) {
-
-		
-		  System.out.println("virker det" + y + x);
+	
 		  this.doubleX = x;
 		  this.doubleY = y;
 		 
@@ -65,12 +64,4 @@ public class Banana {
 		return color;
 	}
 	
-	/*
-	public void setX(int value) {
-		x = value;
-		} 
-
-	public void setY(int value) {
-	   y = value;
-	} */
 }
