@@ -1,6 +1,5 @@
 package dk.itu.team7.game;
 
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -18,7 +17,9 @@ public class View extends JFrame implements KeyListener {
 	final static JTextField velocityText = new JTextField();
 	JLabel Player1 = new JLabel();
 	JLabel Player2 = new JLabel();
-    JLabel WindStrengt = new JLabel();
+	JLabel WindStrengt = new JLabel();
+	JLabel missedTarget = new JLabel();
+
 	// final static JLabel winner = new JLabel("Player2:" + "   " +
 	// Board.counterP2);
 
@@ -53,7 +54,7 @@ public class View extends JFrame implements KeyListener {
 		angleLabel.setVisible(true);
 		angleText.setVisible(true);
 
-		angleLabel.setBounds(630, 20, 102, 20);
+		angleLabel.setBounds(610, 20, 102, 20);
 		angleText.setBounds(712, 20, 30, 20);
 
 		angleText.requestFocus();
@@ -64,7 +65,14 @@ public class View extends JFrame implements KeyListener {
 			public void keyPressed(KeyEvent arg0) {
 				if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 					String inputAngle = angleText.getText();
-					Double ang = Double.parseDouble(inputAngle);
+
+					Double ang = null;
+					try {
+						ang = Double.parseDouble(inputAngle);
+					} catch (NumberFormatException e) {
+						ang = 0.0;
+					}
+
 					Trajectory.setAngle(ang);
 					angleLabel.setVisible(false);
 					angleText.setVisible(false);
@@ -96,7 +104,7 @@ public class View extends JFrame implements KeyListener {
 		velocityLabel.setVisible(true);
 		velocityText.setVisible(true);
 
-		velocityLabel.setBounds(630, 20, 102, 20);
+		velocityLabel.setBounds(610, 20, 102, 20);
 		velocityText.setBounds(712, 20, 30, 20);
 
 		velocityText.requestFocus();
@@ -110,10 +118,13 @@ public class View extends JFrame implements KeyListener {
 					System.out.println(inputVelocity);
 					velocityLabel.setVisible(false);
 					velocityText.setVisible(false);
-
-					Double vel = Double.parseDouble(inputVelocity);
+					Double vel = null;
+					try {
+						vel = Double.parseDouble(inputVelocity);
+					} catch (Exception e) {
+						vel = 0.0;
+					}
 					Trajectory.velocity = vel;
-				
 				}
 			}
 
@@ -128,21 +139,29 @@ public class View extends JFrame implements KeyListener {
 
 	}
 
-
 	public void showScore() {
 		Player1.setText("Player1:" + "   " + Board.getCounterP1());
 		Player2.setText("Player2:" + "   " + Board.getCounterP2());
-		WindStrengt.setText("WindStrengt:" + "   " + Trajectory.windFactor);
+		WindStrengt.setText("WindStrengt: " + Trajectory.windFactor);
+		missedTarget.setText("You missed!");
+		missedTarget.setBounds(600, 200, 200, 50);
 		add(Player1);
 		add(Player2);
 		add(WindStrengt);
+		add(missedTarget);
 		setLayout(null);
 		Player1.setVisible(true);
 		Player1.setBounds(35, 20, 102, 20);
 		Player2.setVisible(true);
 		Player2.setBounds(1260, 20, 102, 20);
 		WindStrengt.setVisible(true);
-		WindStrengt.setBounds(520, 20, 102, 20);
+		WindStrengt.setBounds(450, 20, 200, 20);
+
+		while (board.missedTarget == true) {
+			missedTarget.setVisible(true);
+		}
+
+		missedTarget.setVisible(false);
 
 	}
 
@@ -152,6 +171,7 @@ public class View extends JFrame implements KeyListener {
 
 		if (keyCode == KeyEvent.VK_ENTER) {
 
+			board.missedTarget = false;
 			inputAngleField();
 
 		}
@@ -164,7 +184,7 @@ public class View extends JFrame implements KeyListener {
 		}
 
 		if (keyCode == KeyEvent.VK_CONTROL) {
-		
+
 			board.isBanana2 = true;
 		}
 	}

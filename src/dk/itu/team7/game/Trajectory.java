@@ -6,11 +6,14 @@ public class Trajectory {
 	public static double velocity;
 	public static double inputAngle;
 	private static double degreeToRadian;
-	private static double x_speed; // = ((1 + velocity * 0.02) + (windFactor * 0.01))
-	//		* Math.cos(degreeToRadian);
-	private static double y_speed; // = -(1 + velocity * 0.02) * Math.sin(degreeToRadian);
+	private static double x_speed; // = ((1 + velocity * 0.02) + (windFactor *
+									// 0.01))
+	// * Math.cos(degreeToRadian);
+	private static double y_speed; // = -(1 + velocity * 0.02) *
+									// Math.sin(degreeToRadian);
 
-	// private static double degreeToRadian = (inputAngle / 360) * (2 * Math.PI);
+	// private static double degreeToRadian = (inputAngle / 360) * (2 *
+	// Math.PI);
 
 	// private double y_speed = -2 * (((((45 - input)*1.11111))/100)+1);
 
@@ -20,17 +23,17 @@ public class Trajectory {
 	private static double x;
 	private static double y;
 
-	public static void calculateDegree(int t) {
+	public static void calculateDegree(int direction) {
 		degreeToRadian = (inputAngle / 360) * (2 * Math.PI);
-	
-		x_speed = t * ((1 + velocity * 0.02) + (windFactor * 0.1))
-				* Math.cos(degreeToRadian);
+
+		x_speed = (direction
+				* (1 + velocity * 0.02) * Math.cos(degreeToRadian)) + (windFactor * 0.02);
 		y_speed = -(1 + velocity * 0.02) * Math.sin(degreeToRadian);
-		
-		}
+
+	}
 
 	public static void projectory(double x, double y) {
-     
+
 		inner_x = x;
 
 		inner_y = y;
@@ -74,11 +77,11 @@ public class Trajectory {
 		inputAngle = value;
 
 	}
-	
+
 	public static void setwindFactor(double value) {
 
 		windFactor = value;
-System.out.println(windFactor + "WF");
+		System.out.println(windFactor + "WF");
 	}
 
 }

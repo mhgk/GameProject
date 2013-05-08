@@ -3,7 +3,9 @@ package dk.itu.team7.game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+
 import javax.swing.JPanel;
+
 public class Board extends JPanel {
 	/**
 	 * This class calls on the player class and assign values to the player
@@ -22,6 +24,7 @@ public class Board extends JPanel {
 	boolean isBanana1 = false;
 	boolean isBanana2 = false;
 	public static int collisionResult = -1;
+	boolean missedTarget = false;
 
 	public Board() {
 	}
@@ -61,7 +64,7 @@ public class Board extends JPanel {
 		g2.fill(player2.getShape());
 		g2.setColor(skyline.getColor());
 		g2.fill(skyline.getShape());
-		//counterP1++;
+		// counterP1++;
 		if (isBanana1) {
 
 			banana1.visible = true;
@@ -82,24 +85,30 @@ public class Board extends JPanel {
 		g2.setColor(banana1.getColor());
 		g2.fill(banana1.getShape());
 
-		banana1.runme();
+		banana1.positionCalc();
 
 		collisionResult = collisionControl.collisionControl(banana1.getX(),
 				banana1.getY());
 
+		if (collisionResult == 4) {
+			
+			banana1.visible = false;
+			banana1.updateBanana(-16, -16);
+			missedTarget = true;
+
+		}
+
 		if (collisionResult == 3) {
-			
-			
-		
-			banana1.updateBanana(-20, -20);
-		
-			
+			banana1.updateBanana(-16, -16);
+			banana1.visible = false;
 		}
 
 		if (collisionResult == 2) {
-		
-			setupBoard();
 			
+			banana1.updateBanana(-16, -16);
+			banana1.visible = false;
+			setupBoard();
+
 		}
 
 	}
@@ -111,7 +120,5 @@ public class Board extends JPanel {
 	public static int getCounterP2() {
 		return counterP2;
 	}
-
-	
 
 }

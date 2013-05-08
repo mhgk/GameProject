@@ -9,7 +9,7 @@ public class Banana {
 	private double doubleX;
 	private double doubleY;
 	public boolean visible = false;
-	
+
 	private int x;
 	private int y;
 	private int w;
@@ -24,10 +24,10 @@ public class Banana {
 		this.color = color;
 	}
 
-	public void runme() {
+	public void positionCalc() {
 
 		if (visible) {
-			
+
 			Trajectory.projectory(doubleX, doubleY);
 
 			doubleX = Trajectory.getX();
@@ -39,29 +39,30 @@ public class Banana {
 	}
 
 	public void updateBanana(int x, int y) {
-	
-		  this.doubleX = x;
-		  this.doubleY = y;
-		 
+
+		this.x = x;
+		this.y = y;
+		this.doubleX = x;
+		this.doubleY = y;
+
 	}
-	
-	public  int getY() {
+
+	public int getY() {
 
 		return y;
 	}
-	
+
 	public int getX() {
 
 		return x;
 	}
-	
-	
+
 	public Shape getShape() {
 		return new Rectangle(x, y, w, h);
 	}
-	
+
 	public Color getColor() {
 		return color;
 	}
-	
+
 }

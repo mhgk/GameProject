@@ -47,13 +47,13 @@ public class GameController {
 		int answer = JOptionPane.showConfirmDialog(null, "Play again?", winner
 				+ "win the game :D", JOptionPane.YES_NO_OPTION);
 		System.out.println(answer);
-		
+
 		if (answer == 0) {
 			Board.counterP1 = 0;
 			Board.counterP2 = 0;
 			runGame();
 		}
-		
+
 		if (answer == 1) {
 			System.exit(0);
 		}

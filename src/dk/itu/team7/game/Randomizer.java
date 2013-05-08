@@ -38,7 +38,7 @@ public class Randomizer {
 
 		Random randomYHouse = new Random();
 
-		int y = 300 + randomYHouse.nextInt(400);
+		int y = 350 + randomYHouse.nextInt(350);
 
 		return y;
 	}
@@ -47,7 +47,7 @@ public class Randomizer {
 
 		Random windFactor = new Random();
 
-		double wF = windFactor.nextInt(21) - 11;
+		double wF = windFactor.nextInt(21) - 10;
 
 		Trajectory.setwindFactor(wF);
 	}
