@@ -10,24 +10,24 @@ public class Player {
 
 	public int x;
 	public int y;
-	public int width;
-	public int height;
-	public Color color;
+	public int w;
+	public int h;
+	public Color c;
 
 	public Player(int x, int y, int w, int h, Color c) {
 		this.y = y;
 		this.x = x;
-		this.width = w;
-		this.height = h;
-		this.color = c;
+		this.w = w;
+		this.h = h;
+		this.c = c;
 	}
 
 	public Shape getShape() {
-		return new Rectangle(x, y, width, height);
+		return new Rectangle(x, y, w, h);
 	}
 
 	public Color getColor() {
-		return color;
+		return c;
 	}
 
 	public int getY() {

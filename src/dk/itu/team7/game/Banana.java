@@ -6,27 +6,26 @@ import java.awt.Shape;
 
 public class Banana {
 
-	private double doubleX;
-	private double doubleY;
-	public boolean visible = false;
-
-	private int x;
-	private int y;
-	private int w;
-	private int h;
-	private Color color;
+	int x;
+	int y;
+	int w;
+	int h;
+	Color c;
+	double doubleX;
+	double doubleY;
+	public boolean isBananaThrown = false;
 
 	public Banana(int x, int y, int w, int h, Color color) {
 		this.x = x;
 		this.y = y;
 		this.h = h;
 		this.w = w;
-		this.color = color;
+		this.c = color;
 	}
 
 	public void positionCalc() {
 
-		if (visible) {
+		if (isBananaThrown) {
 
 			Trajectory.projectory(doubleX, doubleY);
 
@@ -62,7 +61,11 @@ public class Banana {
 	}
 
 	public Color getColor() {
-		return color;
+		return c;
+	}
+
+	public void setBananaThrown(boolean isBananaThrown) {
+		this.isBananaThrown = isBananaThrown;
 	}
 
 }

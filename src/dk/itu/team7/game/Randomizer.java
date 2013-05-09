@@ -8,48 +8,47 @@ public class Randomizer {
 
 		int numberOfhouses = randomNumberOfHouses();
 
-		int[][] block = new int[numberOfhouses][2];
+		int[][] houseArray = new int[numberOfhouses][2];
 
 		for (int i = 0; i < numberOfhouses; i++) {
 
-			int houseHeight = randomYHouse();
-			block[i][0] = numberOfhouses;
-			block[i][1] = houseHeight;
+			int houseHeight = randomHouseY();
+			houseArray[i][0] = numberOfhouses;
+			houseArray[i][1] = houseHeight;
 
 		}
 
-		windFactor();
-		
-		return block;
+		return houseArray;
 
 	}
 
 	public static int randomNumberOfHouses() {
 
-		Random randomXHouse = new Random();
+		Random random = new Random();
 
-		int numberOfhouses = 12 - randomXHouse.nextInt(5);
+		// numberOfHouses varies from 8 to 12
+		int numberOfhouses = 12 - random.nextInt(5);
 
 		return numberOfhouses;
 
 	}
 
-	public static int randomYHouse() {
+	public static int randomHouseY() {
 
-		Random randomYHouse = new Random();
+		Random random = new Random();
 
-		int y = 350 + randomYHouse.nextInt(350);
+		int y = 350 + random.nextInt(350);
 
 		return y;
 	}
 
-	public static void windFactor() {
+	public static double windFactor() {
 
-		Random windFactor = new Random();
+		Random random = new Random();
 
-		double wF = windFactor.nextInt(21) - 10;
-
-		Trajectory.setwindFactor(wF);
+		// set windfactor between -10 and 10
+		double wF = random.nextInt(21) - 10;
+		return wF;
 	}
 
 }

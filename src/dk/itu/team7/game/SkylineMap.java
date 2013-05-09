@@ -1,37 +1,36 @@
 package dk.itu.team7.game;
 
 import java.awt.Color;
-import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Area;
+import java.awt.Rectangle;
 
 public class SkylineMap  {
+	public int[][] houseArray;
 	public int numberOfhouses;
 	public int houseWidth;
-	int houseHight = 800;
-	public int[][] blockNew;
+	int houseHeight = 768;
+	int screenWidth = 1366;
 	Color c = Color.black;
-	int w;
-	int h;
-	int[][] temp = new int[10][10];
     
 	public int[][] createSkyline() {
+		
+		// set wind factor for the new skyline
+		Randomizer.windFactor();
 
-		blockNew = Randomizer.randomizer();
+		houseArray = Randomizer.randomizer();
 
-		numberOfhouses = blockNew[0][0];
+		numberOfhouses = houseArray[0][0];
 
-		System.out.println(numberOfhouses + "hallo");
+		houseWidth = screenWidth / numberOfhouses;
 
-		houseWidth = 1366 / numberOfhouses;
-
-		return blockNew;
+		return houseArray;
 	}
 	
 	public Shape getShape() {
 		Area area = null;
 		  for (int i = 0; i < numberOfhouses; i++) {
-			  Shape house = new Rectangle(i * houseWidth, blockNew[i][1], houseWidth, 800);
+			  Shape house = new Rectangle(i * houseWidth, houseArray[i][1], houseWidth, houseHeight);
 			  if (area == null) {
 				  area = new Area(house);
 			  } else {
@@ -44,6 +43,4 @@ public class SkylineMap  {
 	public Color getColor() {
 		return c;
 	}
- 
-
 }

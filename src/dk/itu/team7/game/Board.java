@@ -9,16 +9,17 @@ import javax.swing.JPanel;
 public class Board extends JPanel {
 	/**
 	 * This class calls on the player class and assign values to the player
-	 * parameters. it also initialize the keyListener which takes input from the
-	 * keyboard
+	 * parameters.
 	 */
 
 	private static final long serialVersionUID = 1L;
+
+	SkylineMap skyline;
+	CollisionControl collisionControl;
 	Player player1;
 	Player player2;
 	Banana banana1;
-	SkylineMap skyline;
-	CollisionControl collisionControl;
+
 	public static int counterP1;
 	public static int counterP2;
 	boolean isBanana1 = false;
@@ -37,21 +38,18 @@ public class Board extends JPanel {
 
 		skyline.createSkyline();
 
+		Trajectory.setwindFactor(Randomizer.windFactor());
+
 		player1 = new Player(skyline.houseWidth / 2,
-				skyline.blockNew[0][1] - 40, 20, 40, Color.blue);
-		player2 = new Player(1366 - skyline.houseWidth / 2 - 20,
-				skyline.blockNew[skyline.numberOfhouses - 1][1] - 40, 20, 40,
+				skyline.houseArray[0][1] - 40, 20, 40, Color.blue);
+		player2 = new Player(skyline.screenWidth - skyline.houseWidth / 2 - 20,
+				skyline.houseArray[skyline.numberOfhouses - 1][1] - 40, 20, 40,
 				Color.red);
-		banana1 = new Banana(50, -400, 15, 15, Color.YELLOW);
+		banana1 = new Banana(-16, -16, 15, 15, Color.YELLOW);
 
-		collisionControl.getParameters(skyline.blockNew, skyline.houseWidth,
-				skyline.houseHight, player1.getX(), player1.getY(),
+		collisionControl.setParams(skyline.houseArray, skyline.houseWidth,
+				skyline.houseHeight, player1.getX(), player1.getY(),
 				player2.getX(), player2.getY());
-	}
-
-	public boolean isFocusTraversable() {
-		return true;
-		// what does this do?
 
 	}
 
@@ -64,10 +62,10 @@ public class Board extends JPanel {
 		g2.fill(player2.getShape());
 		g2.setColor(skyline.getColor());
 		g2.fill(skyline.getShape());
-		// counterP1++;
+
 		if (isBanana1) {
 
-			banana1.visible = true;
+			banana1.isBananaThrown = true;
 			banana1.updateBanana(player1.getX(), player1.getY() - 16);
 			Trajectory.calculateDegree(1);
 			isBanana1 = false;
@@ -76,7 +74,7 @@ public class Board extends JPanel {
 
 		if (isBanana2) {
 
-			banana1.visible = true;
+			banana1.isBananaThrown = true;
 			banana1.updateBanana(player2.getX(), player2.getY() - 16);
 			Trajectory.calculateDegree(-1);
 			isBanana2 = false;
@@ -87,30 +85,27 @@ public class Board extends JPanel {
 
 		banana1.positionCalc();
 
+//		collisionResult = collisionControl.collisionControl(banana1.getX(),
+//				banana1.getY());
 		collisionResult = collisionControl.collisionControl(banana1.getX(),
-				banana1.getY());
+				banana1.getY(),banana1.getShape());
 
 		if (collisionResult == 4) {
-			
-			banana1.visible = false;
+			banana1.isBananaThrown = false;
 			banana1.updateBanana(-16, -16);
 			missedTarget = true;
-
 		}
 
 		if (collisionResult == 3) {
+			banana1.isBananaThrown = false;
 			banana1.updateBanana(-16, -16);
-			banana1.visible = false;
 		}
 
 		if (collisionResult == 2) {
-			
+			banana1.isBananaThrown = false;
 			banana1.updateBanana(-16, -16);
-			banana1.visible = false;
 			setupBoard();
-
 		}
-
 	}
 
 	public static int getCounterP1() {
@@ -121,4 +116,21 @@ public class Board extends JPanel {
 		return counterP2;
 	}
 
+	public void setBanana1(boolean isBanana1) {
+		this.isBanana1 = isBanana1;
+	}
+
+	public void setBanana2(boolean isBanana2) {
+		this.isBanana2 = isBanana2;
+	}
+
+	public boolean isFocusable() {
+		return true;
+		/*
+		 * "A component must be focusable in order to gain the focus. When a
+		 * component has been removed from the focus cycle with
+		 * setFocusable(false), it can no longer be navigated with the
+		 * keyboard."
+		 */
+	}
 }

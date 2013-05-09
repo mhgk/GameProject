@@ -44,8 +44,6 @@ public class Trajectory {
 
 		y_speed += g;
 
-		// CollisionControl.collisionControl( inner_x, inner_y);
-
 		setX(inner_x);
 
 		setY(inner_y);
@@ -75,13 +73,16 @@ public class Trajectory {
 	public static void setAngle(double value) {
 
 		inputAngle = value;
-
+	}
+	
+	public static void setVelocity(double value) {
+		
+		velocity = value;
 	}
 
 	public static void setwindFactor(double value) {
 
 		windFactor = value;
-		System.out.println(windFactor + "WF");
 	}
 
 }

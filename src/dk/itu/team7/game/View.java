@@ -1,61 +1,84 @@
 package dk.itu.team7.game;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.*;
-
 public class View extends JFrame implements KeyListener {
-	private Board board;
 
 	private static final long serialVersionUID = 1L;
 
-	static final JLabel angleLabel = new JLabel("Enter angle:");
-	static final JTextField angleText = new JTextField("");
+	private Board board;
 
-	final static JLabel velocityLabel = new JLabel("Enter velocity:");
-	final static JTextField velocityText = new JTextField();
-	JLabel Player1 = new JLabel();
-	JLabel Player2 = new JLabel();
-	JLabel WindStrengt = new JLabel();
-	JLabel missedTarget = new JLabel();
+	JLabel angleLabel = new JLabel("Enter angle:");
+	JTextField angleText = new JTextField("");
 
-	// final static JLabel winner = new JLabel("Player2:" + "   " +
-	// Board.counterP2);
+	JLabel velocityLabel = new JLabel("Enter velocity:");
+	JTextField velocityText = new JTextField();
+
+	JLabel player1Label = new JLabel();
+	JLabel player2Label = new JLabel();
+	JLabel windFactorLabel = new JLabel();
+	JLabel missedTargetLabel = new JLabel();
 
 	public View(Board board) {
 		board.addKeyListener(this);
 		this.board = board;
 		add(board);
 
-		// Board board = new Board();
-		// board.setupBoard();
-
-		// add(board);
-
 		setSize(1366, 768);
 		setTitle("Gorilla");
-		setVisible(true); // make the frame visible
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // set default exit
 		setResizable(false); // turn off resizing
 		setLocationRelativeTo(null); // center the windows
-		// inputAngleField();
-		// showScore();
+		setVisible(true); // make the frame visible
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int keyCode = e.getKeyCode();
+
+		if (keyCode == KeyEvent.VK_ENTER) {
+			board.missedTarget = false;
+			inputAngleField();
+		}
+
+		if (keyCode == KeyEvent.VK_SPACE) {
+			board.isBanana1 = true;
+			// board.setBanana1(true);
+			// which is better?
+		}
+
+		if (keyCode == KeyEvent.VK_CONTROL) {
+			board.isBanana2 = true;
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
 	}
 
 	public void inputAngleField() {
-		System.out.println("input virker?!");
-		add(angleLabel);
-		add(angleText);
-		angleText.setText("");
 
 		setLayout(null);
 
-		angleLabel.setVisible(true);
-		angleText.setVisible(true);
+		angleText.setText("");
 
 		angleLabel.setBounds(610, 20, 102, 20);
 		angleText.setBounds(712, 20, 30, 20);
+
+		add(angleLabel);
+		add(angleText);
+
+		angleLabel.setVisible(true);
+		angleText.setVisible(true);
 
 		angleText.requestFocus();
 
@@ -96,16 +119,18 @@ public class View extends JFrame implements KeyListener {
 
 	public void inputVelocityField() {
 
-		add(velocityLabel);
-		add(velocityText);
-		velocityText.setText("");
-
 		setLayout(null);
-		velocityLabel.setVisible(true);
-		velocityText.setVisible(true);
+
+		velocityText.setText("");
 
 		velocityLabel.setBounds(610, 20, 102, 20);
 		velocityText.setBounds(712, 20, 30, 20);
+
+		add(velocityLabel);
+		add(velocityText);
+
+		velocityLabel.setVisible(true);
+		velocityText.setVisible(true);
 
 		velocityText.requestFocus();
 
@@ -115,9 +140,9 @@ public class View extends JFrame implements KeyListener {
 			public void keyPressed(KeyEvent arg0) {
 				if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 					String inputVelocity = velocityText.getText();
-					System.out.println(inputVelocity);
 					velocityLabel.setVisible(false);
 					velocityText.setVisible(false);
+					
 					Double vel = null;
 					try {
 						vel = Double.parseDouble(inputVelocity);
@@ -136,64 +161,35 @@ public class View extends JFrame implements KeyListener {
 			public void keyTyped(KeyEvent arg0) {
 			}
 		});
-
 	}
 
 	public void showScore() {
-		Player1.setText("Player1:" + "   " + Board.getCounterP1());
-		Player2.setText("Player2:" + "   " + Board.getCounterP2());
-		WindStrengt.setText("WindStrengt: " + Trajectory.windFactor);
-		missedTarget.setText("You missed!");
-		missedTarget.setBounds(600, 200, 200, 50);
-		add(Player1);
-		add(Player2);
-		add(WindStrengt);
-		add(missedTarget);
+
 		setLayout(null);
-		Player1.setVisible(true);
-		Player1.setBounds(35, 20, 102, 20);
-		Player2.setVisible(true);
-		Player2.setBounds(1260, 20, 102, 20);
-		WindStrengt.setVisible(true);
-		WindStrengt.setBounds(450, 20, 200, 20);
+
+		player1Label.setText("Player1:  " + Board.getCounterP1());
+		player2Label.setText("Player2:  " + Board.getCounterP2());
+		windFactorLabel.setText("WindStrength:  " + Trajectory.windFactor);
+		missedTargetLabel.setText("You missed!");
+
+		player1Label.setBounds(35, 20, 102, 20);
+		player2Label.setBounds(1260, 20, 102, 20);
+		windFactorLabel.setBounds(450, 20, 200, 20);
+		missedTargetLabel.setBounds(600, 200, 200, 50);
+
+		add(player1Label);
+		add(player2Label);
+		add(windFactorLabel);
+		add(missedTargetLabel);
+
+		player1Label.setVisible(true);
+		player2Label.setVisible(true);
+		windFactorLabel.setVisible(true);
 
 		while (board.missedTarget == true) {
-			missedTarget.setVisible(true);
+			missedTargetLabel.setVisible(true);
 		}
 
-		missedTarget.setVisible(false);
-
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		int keyCode = e.getKeyCode();
-
-		if (keyCode == KeyEvent.VK_ENTER) {
-
-			board.missedTarget = false;
-			inputAngleField();
-
-		}
-
-		if (keyCode == KeyEvent.VK_SPACE) {
-			System.out.println("SPace");
-
-			board.isBanana1 = true;
-
-		}
-
-		if (keyCode == KeyEvent.VK_CONTROL) {
-
-			board.isBanana2 = true;
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
+		missedTargetLabel.setVisible(false);
 	}
 }
