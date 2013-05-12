@@ -1,4 +1,0 @@
-GameProject
-===========
-
-Programming Workshop
