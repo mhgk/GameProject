@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+
 public class BananaTest {
 
 	@BeforeClass
@@ -61,18 +62,51 @@ public class BananaTest {
 	public void testPositionCalc() {
 		Banana banana = new Banana(15, 16, 17, 18, Color.GREEN);
 		banana.isBananaThrown = true;
-		banana.updateBanana(50, 50);
 
+		// no wind, velocity, straight up
+		banana.updateBanana(50, 700);
 		Trajectory.windFactor = 0;
-		Trajectory.velocity = 0;
+		Trajectory.velocity = 50;
 		Trajectory.inputAngle = 90;
 		Trajectory.calculateDegree(1);
 
 		for (int i = 0; i <= 1000; i++) {
 			banana.positionCalc();
-			System.out.println(banana.getX() + ", " + banana.getY());
 		}
-		
+		int initialNoWindX = 50;
+		int actualNoWindX = banana.getX();
+		boolean noWindCondition = initialNoWindX == actualNoWindX;
+		assertTrue(noWindCondition);
+
+		// windfactor 10, velocity 50, straight up
+		banana.updateBanana(50, 700);
+		Trajectory.windFactor = 10;
+		Trajectory.velocity = 50;
+		Trajectory.inputAngle = 90;
+		Trajectory.calculateDegree(1);
+
+		for (int i = 0; i <= 1000; i++) {
+			banana.positionCalc();
+		}
+		int initialWindX = 50;
+		int actualWindX = banana.getX();
+		boolean windCondition = initialWindX != actualWindX;
+		assertTrue(windCondition);
+
+		// no wind, velocity 50, 45 degree angle
+		banana.updateBanana(50, 700);
+		Trajectory.windFactor = 0;
+		Trajectory.velocity = 50;
+		Trajectory.inputAngle = 45;
+		Trajectory.calculateDegree(1);
+
+		for (int i = 0; i <= 1000; i++) {
+			banana.positionCalc();
+		}
+		int initialX45 = 50;
+		int actualX45 = banana.getX();
+		boolean condition45 = initialX45 != actualX45;
+		assertTrue(condition45);
 		// fail("Not yet implemented");
 	}
 

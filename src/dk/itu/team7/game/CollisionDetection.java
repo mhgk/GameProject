@@ -2,7 +2,7 @@ package dk.itu.team7.game;
 
 import java.awt.Shape;
 
-public class CollisionControl {
+public class CollisionDetection {
 
 	int[][] houseArray;
 	int houseWidth;
@@ -30,7 +30,7 @@ public class CollisionControl {
 
 //	public int collisionControl(int x, int y) {
 	
-	public int collisionControl(int x, int y, Shape shape) {
+	public int collisionCalc(int x, int y, Shape shape) {
 
 		bananaX = x;
 		bananaY = y;

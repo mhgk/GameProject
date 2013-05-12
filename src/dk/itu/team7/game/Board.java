@@ -7,15 +7,21 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 public class Board extends JPanel {
+
 	/**
-	 * This class calls on the player class and assign values to the player
-	 * parameters.
+	 * This class creates instances of SkylineMap, CollisionControl, Player &
+	 * Banana. It contains a paint method which draws the objects. It controls
+	 * what happens, when a collision is detected. It also keeps track of the
+	 * score count for the two players.
+	 * 
+	 * @author Team 7: Mads Gade & René A. Nielsen
+	 * @version 1.0
 	 */
 
 	private static final long serialVersionUID = 1L;
 
 	SkylineMap skyline;
-	CollisionControl collisionControl;
+	CollisionDetection collisionControl;
 	Player player1;
 	Player player2;
 	Banana banana1;
@@ -30,11 +36,18 @@ public class Board extends JPanel {
 	public Board() {
 	}
 
+	/**
+	 * This method sets up the visual part of the game, by creating the skyline,
+	 * setting the wind factor, creating two players and a banana. It also sets
+	 * the parameters used for collision control.
+	 * 
+	 */
+
 	public void setupBoard() {
 
 		skyline = new SkylineMap();
 
-		collisionControl = new CollisionControl();
+		collisionControl = new CollisionDetection();
 
 		skyline.createSkyline();
 
@@ -50,8 +63,14 @@ public class Board extends JPanel {
 		collisionControl.setParams(skyline.houseArray, skyline.houseWidth,
 				skyline.houseHeight, player1.getX(), player1.getY(),
 				player2.getX(), player2.getY());
-
 	}
+
+	/**
+	 * This method overrides paint() in JComponent. It is used to draw objects
+	 * on the JPanel and runs every time View is repainted. Position
+	 * calculations for the banana and collision control actions are placed
+	 * inside the loop to make sure these are handled immediately.
+	 */
 
 	public void paint(Graphics g) {
 
@@ -62,33 +81,27 @@ public class Board extends JPanel {
 		g2.fill(player2.getShape());
 		g2.setColor(skyline.getColor());
 		g2.fill(skyline.getShape());
+		g2.setColor(banana1.getColor());
+		g2.fill(banana1.getShape());
 
 		if (isBanana1) {
-
 			banana1.isBananaThrown = true;
 			banana1.updateBanana(player1.getX(), player1.getY() - 16);
 			Trajectory.calculateDegree(1);
 			isBanana1 = false;
-
 		}
 
 		if (isBanana2) {
-
 			banana1.isBananaThrown = true;
 			banana1.updateBanana(player2.getX(), player2.getY() - 16);
 			Trajectory.calculateDegree(-1);
 			isBanana2 = false;
-
 		}
-		g2.setColor(banana1.getColor());
-		g2.fill(banana1.getShape());
 
 		banana1.positionCalc();
 
-//		collisionResult = collisionControl.collisionControl(banana1.getX(),
-//				banana1.getY());
-		collisionResult = collisionControl.collisionControl(banana1.getX(),
-				banana1.getY(),banana1.getShape());
+		collisionResult = collisionControl.collisionCalc(banana1.getX(),
+				banana1.getY(), banana1.getShape());
 
 		if (collisionResult == 4) {
 			banana1.isBananaThrown = false;
@@ -108,17 +121,43 @@ public class Board extends JPanel {
 		}
 	}
 
+	/**
+	 * This returns the counter for player 1.
+	 * 
+	 * @return counterP1
+	 */
+
 	public static int getCounterP1() {
 		return counterP1;
 	}
+
+	/**
+	 * This returns the counter for player 2.
+	 * 
+	 * @return counterP2
+	 */
 
 	public static int getCounterP2() {
 		return counterP2;
 	}
 
+	/**
+	 * This method sets isBanana1 to the specified value.
+	 * 
+	 * @param isBanana1
+	 *            - true or false.
+	 */
+
 	public void setBanana1(boolean isBanana1) {
 		this.isBanana1 = isBanana1;
 	}
+
+	/**
+	 * This method sets isBanana2 to the specified value.
+	 * 
+	 * @param isBanana2
+	 *            - true or false.
+	 */
 
 	public void setBanana2(boolean isBanana2) {
 		this.isBanana2 = isBanana2;

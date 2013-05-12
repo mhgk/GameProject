@@ -20,50 +20,50 @@ public class BoardTest {
 
 	@Before
 	public void setUp() throws Exception {
+		System.out.println("Test begin.");
 	}
 
 	@After
 	public void tearDown() throws Exception {
-	}
-
-	@Test
-	public void testIsFocusable() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testBoard() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetupBoard() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPaintGraphics() {
-		fail("Not yet implemented");
+		System.out.println("Test end.");
 	}
 
 	@Test
 	public void testGetCounterP1() {
-		fail("Not yet implemented");
+		Board.counterP1 = 4;
+		int expCountP1 = 4;
+		int actCountP1 = Board.getCounterP1();
+		assertEquals(expCountP1, actCountP1);
+		// fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetCounterP2() {
-		fail("Not yet implemented");
+		Board.counterP2 = 5;
+		int expCountP2 = 5;
+		int actCountP2 = Board.getCounterP2();
+		assertEquals(expCountP2, actCountP2);
+		// fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetBanana1() {
-		fail("Not yet implemented");
+		Board board = new Board();
+		board.setBanana1(true);
+		boolean expBool = true;
+		boolean actBool = board.isBanana1;
+		assertEquals(expBool, actBool);
+		// fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetBanana2() {
-		fail("Not yet implemented");
+		Board board = new Board();
+		board.setBanana2(true);
+		boolean expBool = true;
+		boolean actBool = board.isBanana2;
+		assertEquals(expBool, actBool);
+		// fail("Not yet implemented");
 	}
 
 }

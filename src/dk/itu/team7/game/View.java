@@ -9,6 +9,17 @@ import java.awt.event.KeyListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * This class creates the JFrame, which contains the JPanel, JLabels and
+ * JTextFields. It also implements the KeyListener, which listens for keyboard
+ * events.
+ * 
+ * @author Team 7: Mads Gade & René A. Nielsen
+ * @version 1.0
+ * 
+ * 
+ */
+
 public class View extends JFrame implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
@@ -45,7 +56,7 @@ public class View extends JFrame implements KeyListener {
 		int keyCode = e.getKeyCode();
 
 		if (keyCode == KeyEvent.VK_ENTER) {
-//			board.missedTarget = false;
+			// board.missedTarget = false;
 			inputAngleField();
 		}
 
