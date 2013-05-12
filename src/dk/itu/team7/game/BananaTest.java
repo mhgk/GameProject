@@ -61,11 +61,18 @@ public class BananaTest {
 	public void testPositionCalc() {
 		Banana banana = new Banana(15, 16, 17, 18, Color.GREEN);
 		banana.isBananaThrown = true;
-		banana.updateBanana(100, 100);
+		banana.updateBanana(50, 50);
 
-		for (int i = 0; i < 1000; i++) {
+		Trajectory.windFactor = 0;
+		Trajectory.velocity = 0;
+		Trajectory.inputAngle = 90;
+		Trajectory.calculateDegree(1);
+
+		for (int i = 0; i <= 1000; i++) {
 			banana.positionCalc();
+			System.out.println(banana.getX() + ", " + banana.getY());
 		}
+		
 		// fail("Not yet implemented");
 	}
 

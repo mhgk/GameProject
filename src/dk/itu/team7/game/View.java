@@ -3,8 +3,11 @@ package dk.itu.team7.game;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class View extends JFrame implements KeyListener {
 
@@ -42,7 +45,7 @@ public class View extends JFrame implements KeyListener {
 		int keyCode = e.getKeyCode();
 
 		if (keyCode == KeyEvent.VK_ENTER) {
-			board.missedTarget = false;
+//			board.missedTarget = false;
 			inputAngleField();
 		}
 
@@ -142,7 +145,7 @@ public class View extends JFrame implements KeyListener {
 					String inputVelocity = velocityText.getText();
 					velocityLabel.setVisible(false);
 					velocityText.setVisible(false);
-					
+
 					Double vel = null;
 					try {
 						vel = Double.parseDouble(inputVelocity);
@@ -185,11 +188,18 @@ public class View extends JFrame implements KeyListener {
 		player1Label.setVisible(true);
 		player2Label.setVisible(true);
 		windFactorLabel.setVisible(true);
-
-		while (board.missedTarget == true) {
-			missedTargetLabel.setVisible(true);
-		}
-
 		missedTargetLabel.setVisible(false);
+
+		if (board.missedTarget == true) {
+
+			missedTargetLabel.setVisible(true);
+
+			Timer timer = new Timer();
+			timer.schedule(new TimerTask() {
+				public void run() {
+					board.missedTarget = false;
+				}
+			}, 5000);
+		}
 	}
 }

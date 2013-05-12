@@ -43,7 +43,7 @@ public class Board extends JPanel {
 		player1 = new Player(skyline.houseWidth / 2,
 				skyline.houseArray[0][1] - 40, 20, 40, Color.blue);
 		player2 = new Player(skyline.screenWidth - skyline.houseWidth / 2 - 20,
-				skyline.houseArray[skyline.numberOfhouses - 1][1] - 40, 20, 40,
+				skyline.houseArray[skyline.numberOfHouses - 1][1] - 40, 20, 40,
 				Color.red);
 		banana1 = new Banana(-16, -16, 15, 15, Color.YELLOW);
 

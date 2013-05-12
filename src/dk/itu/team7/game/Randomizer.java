@@ -12,9 +12,9 @@ public class Randomizer {
 
 		for (int i = 0; i < numberOfhouses; i++) {
 
-			int houseHeight = randomHouseY();
+			int topOfHouse = randomHouseY();
 			houseArray[i][0] = numberOfhouses;
-			houseArray[i][1] = houseHeight;
+			houseArray[i][1] = topOfHouse;
 
 		}
 
