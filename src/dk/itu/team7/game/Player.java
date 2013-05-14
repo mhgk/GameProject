@@ -8,7 +8,7 @@ import java.awt.Shape;
  * This class creates a player with specified parameters and returns a shape
  * when asked for.
  * 
- * @author Team 7: Mads Gade & René A. Nielsen
+ * @author Team 7: Mads Gade & Rene A. Nielsen
  * @version 1.0
  */
 
@@ -26,15 +26,15 @@ public class Player {
 	 * This constructs a Player with the following specified parameters.
 	 * 
 	 * @param x
-	 *            - specified X position
+	 *            specified X position
 	 * @param y
-	 *            - specified Y position
+	 *            specified Y position
 	 * @param w
-	 *            - specified width
+	 *            specified width
 	 * @param h
-	 *            - specified height
-	 * @param color
-	 *            - specified color
+	 *            specified height
+	 * @param c
+	 *            specified color
 	 */
 
 	public Player(int x, int y, int w, int h, Color c) {

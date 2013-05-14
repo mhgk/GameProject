@@ -3,17 +3,11 @@ package dk.itu.team7.game;
 import javax.swing.JOptionPane;
 
 /**
- * The GameController class is the main class.
+ * This class is the main class of the game. It creates instances of View and
+ * Board, and runs the game as long as it is not terminated by the user.
  * 
- * @author Team 7: Mads Gade & René Nielsen
- * @version 1.0 (15.May.2013)
- * 
- * @param view
- *            New instance of View.
- * @param board
- *            New instance of Board.
- * @param winner
- *            String to include name of the winner.
+ * @author Team 7: Mads Gade & Rene A. Nielsen
+ * @version 1.0
  */
 
 public class GameController {
@@ -24,7 +18,8 @@ public class GameController {
 	String winner;
 
 	/**
-	 * Class constructor
+	 * This is the main method. It makes sure an instance of GameController is
+	 * created, when the game is started.
 	 * 
 	 * @throws InterruptedException
 	 */
@@ -40,6 +35,13 @@ public class GameController {
 
 	}
 
+	/**
+	 * This constructor runs startGame() and runGame(), when an instance of
+	 * GameController is created.
+	 * 
+	 * @throws InterruptedException
+	 */
+
 	public GameController() throws InterruptedException {
 		// this constructor(GameController) calls the methods startGame and
 		// runGame.
@@ -50,6 +52,11 @@ public class GameController {
 
 	}
 
+	/**
+	 * This method creates a new instance of Board, runs setupBoard and creates
+	 * View with the newly created Board as parameter.
+	 */
+
 	public void startGame() {
 
 		board = new Board();
@@ -57,6 +64,14 @@ public class GameController {
 		view = new View(board);
 
 	}
+
+	/**
+	 * This method runs the game, as long as no winner is found. When a winner
+	 * is found, the score is updated one last time and the user is asked to
+	 * restart or quit the game.
+	 * 
+	 * @throws InterruptedException
+	 */
 
 	public void runGame() throws InterruptedException {
 		// This method calls on view and and uses the function repaint on it.
@@ -90,6 +105,12 @@ public class GameController {
 	// view.inputAngleField();
 	// }
 	// }
+	
+	/**
+	 * This returns true if a player counter reaches 5. When true is returned, the game is stopped.    
+	 * 
+	 * @return a boolean which describes whether there is a winner or not.
+	 */
 
 	public boolean isThereAWinner() {
 		if (Board.getCounterP1() == 5) {

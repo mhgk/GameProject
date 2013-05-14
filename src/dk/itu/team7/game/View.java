@@ -14,7 +14,7 @@ import java.util.TimerTask;
  * JTextFields. It also implements the KeyListener, which listens for keyboard
  * events.
  * 
- * @author Team 7: Mads Gade & René A. Nielsen
+ * @author Team 7: Mads Gade & Rene A. Nielsen
  * @version 1.0
  * 
  * 
@@ -37,6 +37,14 @@ public class View extends JFrame implements KeyListener {
 	JLabel windFactorLabel = new JLabel();
 	JLabel missedTargetLabel = new JLabel();
 
+	/**
+	 * This creates View with Board as parameter which is added View. It also
+	 * sets the properties of the JFrame.
+	 * 
+	 * @param board
+	 *            Board from GameRunner is used in View and added to JFrame.
+	 */
+
 	public View(Board board) {
 		board.addKeyListener(this);
 		this.board = board;
@@ -51,19 +59,26 @@ public class View extends JFrame implements KeyListener {
 
 	}
 
+	/**
+	 * This method controls what happens, when a keyboard button is pressed.
+	 * <p>
+	 * Enter shows the angle input field and starts listening for input
+	 * <p>
+	 * Space throws the banana for player 1
+	 * <p>
+	 * Control throws the banana for player 2
+	 */
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 
 		if (keyCode == KeyEvent.VK_ENTER) {
-			// board.missedTarget = false;
 			inputAngleField();
 		}
 
 		if (keyCode == KeyEvent.VK_SPACE) {
 			board.isBanana1 = true;
-			// board.setBanana1(true);
-			// which is better?
 		}
 
 		if (keyCode == KeyEvent.VK_CONTROL) {
@@ -78,6 +93,13 @@ public class View extends JFrame implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
+
+	/**
+	 * This method sets the properties of the angle textfield. It listens for
+	 * angle input, and saves this in Trajectory. When angle input is saved,
+	 * visibility of the textfield is set to false and inputVelocityField() is
+	 * called.
+	 */
 
 	public void inputAngleField() {
 
@@ -125,11 +147,15 @@ public class View extends JFrame implements KeyListener {
 			@Override
 			public void keyTyped(KeyEvent arg0) {
 			}
-
 		});
 		repaint();
-
 	}
+
+	/**
+	 * This method sets the properties of the velocity textfield. It listens for
+	 * velocity input, and saves this in Trajectory. When velocity input is
+	 * saved, visibility of the textfield is set to false.
+	 */
 
 	public void inputVelocityField() {
 
@@ -176,6 +202,12 @@ public class View extends JFrame implements KeyListener {
 			}
 		});
 	}
+
+	/**
+	 * This method shows the score for each player and the wind factor for the
+	 * map. When a player shoots a banana out of bounds a 'missed target' label
+	 * is displayed for 5 seconds.
+	 */
 
 	public void showScore() {
 

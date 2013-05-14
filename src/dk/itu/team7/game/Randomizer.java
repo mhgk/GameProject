@@ -6,7 +6,7 @@ import java.util.Random;
  * This class creates random numbers used when creating the skyline and setting
  * the wind factor.
  * 
- * @author Team 7: Mads Gade & René A. Nielsen
+ * @author Team 7: Mads Gade & Rene A. Nielsen
  * @version 1.0
  */
 

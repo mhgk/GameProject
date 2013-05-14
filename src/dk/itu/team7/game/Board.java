@@ -3,25 +3,24 @@ package dk.itu.team7.game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
 import javax.swing.JPanel;
 
-public class Board extends JPanel {
+/**
+ * This class creates instances of SkylineMap, CollisionControl, Player &
+ * Banana. It contains a paint method which draws the objects. It controls
+ * what happens, when a collision is detected. It also keeps track of the
+ * score count for the two players.
+ * 
+ * @author Team 7: Mads Gade & Rene A. Nielsen
+ * @version 1.0
+ */
 
-	/**
-	 * This class creates instances of SkylineMap, CollisionControl, Player &
-	 * Banana. It contains a paint method which draws the objects. It controls
-	 * what happens, when a collision is detected. It also keeps track of the
-	 * score count for the two players.
-	 * 
-	 * @author Team 7: Mads Gade & René A. Nielsen
-	 * @version 1.0
-	 */
+public class Board extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
 	SkylineMap skyline;
-	CollisionDetection collisionControl;
+	CollisionDetection collisionDetection;
 	Player player1;
 	Player player2;
 	Banana banana1;
@@ -47,7 +46,7 @@ public class Board extends JPanel {
 
 		skyline = new SkylineMap();
 
-		collisionControl = new CollisionDetection();
+		collisionDetection = new CollisionDetection();
 
 		skyline.createSkyline();
 
@@ -60,7 +59,7 @@ public class Board extends JPanel {
 				Color.red);
 		banana1 = new Banana(-16, -16, 15, 15, Color.YELLOW);
 
-		collisionControl.setParams(skyline.houseArray, skyline.houseWidth,
+		collisionDetection.setParams(skyline.houseArray, skyline.houseWidth,
 				skyline.houseHeight, player1.getX(), player1.getY(),
 				player2.getX(), player2.getY());
 	}
@@ -73,7 +72,6 @@ public class Board extends JPanel {
 	 */
 
 	public void paint(Graphics g) {
-
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(player1.getColor());
 		g2.fill(player1.getShape());
@@ -100,7 +98,7 @@ public class Board extends JPanel {
 
 		banana1.positionCalc();
 
-		collisionResult = collisionControl.collisionCalc(banana1.getX(),
+		collisionResult = collisionDetection.collisionCalc(banana1.getX(),
 				banana1.getY(), banana1.getShape());
 
 		if (collisionResult == 4) {

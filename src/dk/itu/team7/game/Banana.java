@@ -8,10 +8,8 @@ import java.awt.Shape;
  * This class creates a banana with specified parameters, keeps track of it's
  * position and returns a shape when asked for.
  * 
- * @author Team 7: Mads Gade & René A. Nielsen
+ * @author Team 7: Mads Gade & Rene A. Nielsen
  * @version 1.0
- * 
- * 
  */
 
 public class Banana {
@@ -29,15 +27,15 @@ public class Banana {
 	 * This constructs a Banana with the following specified parameters.
 	 * 
 	 * @param x
-	 *            - specified X position
+	 *            specified X position
 	 * @param y
-	 *            - specified Y position
+	 *            specified Y position
 	 * @param w
-	 *            - specified width
+	 *            specified width
 	 * @param h
-	 *            - specified height
+	 *            specified height
 	 * @param c
-	 *            - specified color
+	 *            specified color
 	 */
 
 	public Banana(int x, int y, int w, int h, Color c) {
@@ -72,9 +70,9 @@ public class Banana {
 	 * This method updates the X and Y position.
 	 * 
 	 * @param x
-	 *            - specified X position
+	 *            specified X position
 	 * @param y
-	 *            - specified Y position
+	 *            specified Y position
 	 */
 
 	public void updateBanana(int x, int y) {
@@ -119,7 +117,7 @@ public class Banana {
 	}
 
 	/**
-	 * This returns the color. 
+	 * This returns the color.
 	 * 
 	 * @return color of banana.
 	 */
