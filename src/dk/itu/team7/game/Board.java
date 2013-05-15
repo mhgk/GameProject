@@ -143,7 +143,7 @@ public class Board extends JPanel {
 	 * This method sets isBanana1 to the specified value.
 	 * 
 	 * @param isBanana1
-	 *            - true or false.
+	 *            true or false.
 	 */
 
 	public void setBanana1(boolean isBanana1) {
@@ -154,7 +154,7 @@ public class Board extends JPanel {
 	 * This method sets isBanana2 to the specified value.
 	 * 
 	 * @param isBanana2
-	 *            - true or false.
+	 *            true or false.
 	 */
 
 	public void setBanana2(boolean isBanana2) {

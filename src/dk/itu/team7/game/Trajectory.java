@@ -37,7 +37,7 @@ public class Trajectory {
 	 * variables: inputAngle, velocity & windFactor.
 	 * 
 	 * @param direction
-	 *            - determines which direction the banana flies.
+	 *            determines which direction the banana flies.
 	 *            <p>
 	 *            1 = from left to right.
 	 *            <p>
